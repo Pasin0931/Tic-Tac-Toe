@@ -1,16 +1,15 @@
-a1, a2, a3 = " ", " ", " "
-b1, b2, b3 = " ", " ", " "
-c1, c2, c3 = " ", " ", " "
+loc11, loc12, loc13 = " ", " ", " "
+loc21, loc22, loc23 = " ", " ", " "
+loc31, loc32, loc33 = " ", " ", " "
 
 def table():
-    print(f"{a1} | {a2} | {a3}")
+    print(f"{loc11} | {loc12} | {loc13}")
     print(f"--+---+--")
-    print(f"{b1} | {b2} | {b3}")
+    print(f"{loc21} | {loc22} | {loc23}")
     print(f"--+---+--")
-    print(f"{c1} | {c2} | {c3}")
+    print(f"{loc31} | {loc32} | {loc33}")
     
 def check_if_exist(cell_name):
-    # print(cell_name)
     if len(cell_name.strip()) == 0:
         return False
     elif len(cell_name.strip()) != 0:
@@ -18,9 +17,9 @@ def check_if_exist(cell_name):
 
 def insert_mark(player):
     
-    global a1, a2, a3
-    global b1, b2, b3
-    global c1, c2, c3
+    global loc11, loc12, loc13
+    global loc21, loc22, loc23
+    global loc31, loc32, loc33
     
     print(f"Player {player}:")
     while True:
@@ -31,112 +30,114 @@ def insert_mark(player):
             print("Invalid move. Try again.")
         else:
             if first_cell == 1 and second_cell == 1:
-                checked = check_if_exist(a1)
+                checked = check_if_exist(loc11)
                 if checked == False:
-                    a1 = str(player)
+                    loc11 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                 
             elif first_cell == 1 and second_cell == 2:
-                checked = check_if_exist(a2)
+                checked = check_if_exist(loc12)
                 if checked == False:
-                    a2 = str(player)
+                    loc12 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                 
             elif first_cell == 1 and second_cell == 3:
-                checked = check_if_exist(a3)
+                checked = check_if_exist(loc13)
                 if checked == False:
-                    a3 = str(player)
+                    loc13 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                     
                     
             elif first_cell == 2 and second_cell == 1:
-                checked = check_if_exist(b1)
+                checked = check_if_exist(loc21)
                 if checked == False:
-                    b1 = str(player)
+                    loc21 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                 
             elif first_cell == 2 and second_cell == 2:
-                checked = check_if_exist(b2)
+                checked = check_if_exist(loc22)
                 if checked == False:
-                    b2 = str(player)
+                    loc22 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                 
             elif first_cell == 2 and second_cell == 3:
-                checked = check_if_exist(b3)
+                checked = check_if_exist(loc23)
                 if checked == False:
-                    b3 = str(player)
+                    loc23 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                     
                     
             elif first_cell == 3 and second_cell == 1:
-                checked = check_if_exist(c1)
+                checked = check_if_exist(loc31)
                 if checked == False:
-                    c1 = str(player)
+                    loc31 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                 
             elif first_cell == 3 and second_cell == 2:
-                checked = check_if_exist(c2)
+                checked = check_if_exist(loc32)
                 if checked == False:
-                    c2 = str(player)
+                    loc32 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
                 
             elif first_cell == 3 and second_cell == 3:
-                checked = check_if_exist(c3)
+                checked = check_if_exist(loc33)
                 if checked == False:
-                    c3 = str(player)
+                    loc33 = str(player)
                     break
                 else:
                     print("Cell already taken. Try again.")
         
                 
 def check_win_or_tie(player):
-    if a1.strip() == a2.strip() == a3.strip() and a1 != " " and a2 != " "and a3 != " ":
+    if loc11.strip() == loc12.strip() == loc13.strip() and loc11 != " ":
         print(f"Player {player} wins!")
         return True
-    elif b1.strip() == b2.strip() == b3.strip() and b1 != " " and b2 != " "and b3 != " ":
+    elif loc21.strip() == loc22.strip() == loc23.strip() and loc21 != " ":
         print(f"Player {player} wins!")
         return True
-    elif c1.strip() == c2.strip() == c3.strip() and c1 != " " and c2 != " "and c3 != " ":
-        print(f"Player {player} wins!")
-        return True
-    
-    elif a1.strip() == b1.strip() == c1.strip() and a1 != " " and b1 != " "and c1 != " ":
-        print(f"Player {player} wins!")
-        return True
-    elif a2.strip() == b2.strip() == c2.strip() and a2 != " " and b2 != " "and c2 != " ":
-        print(f"Player {player} wins!")
-        return True
-    elif a3.strip() == b3.strip() == c3.strip() and a3 != " " and b3 != " "and c3 != " ":
+    elif loc31.strip() == loc32.strip() == loc33.strip() and loc31 != " ":
         print(f"Player {player} wins!")
         return True
     
-    elif a1.strip() == b2.strip() == c3.strip() and a1 != " " and b2 != " "and c3 != " ":
+    elif loc11.strip() == loc21.strip() == loc31.strip() and loc11 != " ":
         print(f"Player {player} wins!")
         return True
-    elif a3.strip() == b2.strip() == c1.strip() and a3 != " " and b2 != " "and c1 != " ":
+    elif loc12.strip() == loc22.strip() == loc32.strip() and loc12 != " ":
+        print(f"Player {player} wins!")
+        return True
+    elif loc13.strip() == loc23.strip() == loc33.strip() and loc13 != " ":
         print(f"Player {player} wins!")
         return True
     
-    elif a1 != " " and a2 != " " and a3 != " " and b1 != " " and b2 != " " and b3 != " " and c1 != " " and c2 != " " and c3 != " ":
+    elif loc11.strip() == loc22.strip() == loc33.strip() and loc11 != " ":
+        print(f"Player {player} wins!")
+        return True
+    elif loc13.strip() == loc22.strip() == loc31.strip() and loc13 != " ":
+        print(f"Player {player} wins!")
+        return True
+    
+    elif (loc11 != " " and loc12 != " " and loc13 != " " and
+            loc21 != " " and loc22 != " " and loc23 != " " and
+            loc31 != " " and loc32 != " " and loc33 != " "):
         print("It's a draw!")
         return True
-    
+
 table()
 while True:
     insert_mark("X")
