@@ -71,32 +71,55 @@ def display_table(table):
     
     
 def player_turn(player, table):
-    max_table_value = board_size**2
-    
+    max_table_value = board_size ** 2
     state_pass = False
-    
-    while state_pass == False:
-        
-        while True:
-            try:
-                player_move = int(input(f"Player '{player}', enter your move position (1-{max_table_value}): "))
-                
-                if player_move < 1 or player_move > max_table_value:
-                    print(out_of_range)
-                else:
-                    break
-            except ValueError:
-                print(invalid)
-        
+
+    while not state_pass:
+        try:
+            player_move = int(input(f"Player '{player}', enter your move position (1-{max_table_value}): "))
+        except ValueError:
+            print(invalid)
+            continue
+
+        if player_move < 1 or player_move > max_table_value:
+            print(out_of_range)
+            continue
+
         for row in table:
             if player_move in row:
-                for i in range(len(row)):
-                    row[i] = player
-                    state_pass = True
-                    break
-            else:
+                idx = row.index(player_move)
+                row[idx] = player
+                state_pass = True
                 break
-                
+
+        if not state_pass:
+            print("That position is already taken. Try again.")
+
+
+def check_win(player):
+    for row in table_xox:
+        if all(cell == player for cell in row):
+            return True
+
+    for col in range(board_size):
+        if all(table_xox[row][col] == player for row in range(board_size)):
+            return True
+
+    if all(table_xox[i][i] == player for i in range(board_size)):
+        return True
+
+    if all(table_xox[i][board_size - 1 - i] == player for i in range(board_size)):
+        return True
+
+    return False
+
+
+def check_draw():
+    for row in table_xox:
+        for cell in row:
+            if isinstance(cell, int):
+                return False
+    return True
 
 
 # Main part
@@ -114,7 +137,24 @@ while win == False:
     display_table(table_xox)
     if player_1_turn == True:
         player_turn(player_1, table_xox)
+        if check_draw() == True:
+            display_table(table_xox)
+            print("It's a draw!")
+            break
+        if check_win(player_1) == True:
+            display_table(table_xox)
+            print(f"Player '{player_1}' wins!")
+            break
         player_1_turn = False
+
     elif player_1_turn == False:
         player_turn(player_2, table_xox)
-        player_1_turn == True
+        if check_draw() == True:
+            display_table(table_xox)
+            print("It's a draw!")
+            break
+        if check_win(player_2) == True:
+            display_table(table_xox)
+            print(f"Player '{player_2}' wins!")
+            break
+        player_1_turn = True
